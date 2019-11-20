@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SphereScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
-        
+        var spherec = GetComponent<Renderer>();
+        spherec.material.SetColor("_Color",Color.red);
     }
 
     // Update is called once per frame

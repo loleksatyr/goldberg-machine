@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
   public bool lksp;
     void Start()
     {
-        _cameraOffset = transform.position - Spherefollow.position;
+        _cameraOffset = transform.position + Spherefollow.position;
     }
 
     // Update is called once per frame
