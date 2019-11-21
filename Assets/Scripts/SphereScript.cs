@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ using UnityEngine.SceneManagement;
 
 public class SphereScript : MonoBehaviour
 {
      Rigidbody rigibody;
      public float overallSpeed;
+      public float thrust1;
+      public float thrust2;
     void Start()
     {
         var spherec = GetComponent<Renderer>();
@@ -27,8 +30,35 @@ public class SphereScript : MonoBehaviour
         overallSpeed = rigibody.velocity.magnitude;
         //Debug.Log(overallSpeed);
         if(RotateScript.touched == true){
-            Debug.Log("aaa");
+            Debug.Log(overallSpeed);
             //rigibody.velocity.magnitude = 2*(rigibody.velocity.magnitude);
+            rigibody.AddForce(thrust1, 0, thrust2, ForceMode.Impulse);
+        }
+        if(StopScript.stopped == true){
+            Debug.Log(overallSpeed);
+            //rigibody.velocity.magnitude = 2*(rigibody.velocity.magnitude);
+            rigibody.AddForce(-thrust1, 0,-thrust2, ForceMode.Impulse);
+        }
+         if(SpeedScript.speed == true){
+            Debug.Log(overallSpeed);
+            //rigibody.velocity.magnitude = 2*(rigibody.velocity.magnitude);
+            rigibody.AddForce(2*thrust1, 0,0, ForceMode.Impulse);
+        }
+       
+         if(Stop2Script.stopped2 == true){
+            Debug.Log(overallSpeed);
+            //rigibody.velocity.magnitude = 2*(rigibody.velocity.magnitude);
+            
+            rigibody.AddForce(-thrust1/2, 0, 0, ForceMode.Impulse);
+        }
+         if(PermaStopScript.stoppeds == true){
+            Debug.Log("Stop");
+            //rigibody.velocity.magnitude = 2*(rigibody.velocity.magnitude);
+            horizontalVelocity = new Vector3(0, rigibody.velocity.y, 0);
+            rigibody.velocity = horizontalVelocity;      
+             transform.position = new Vector3(0,4,0);
+  
+
         }
     }
 }
